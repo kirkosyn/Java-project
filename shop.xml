@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shop>
+    <priceFirstItem>20</priceFirstItem>
+    <priceSecondItem>40</priceSecondItem>
+    <priceThirdItem>60</priceThirdItem>
+    <priceFourthItem>80</priceFourthItem>
+</shop>

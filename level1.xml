@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<level1>
+    <amountOfSmallEnemies>4</amountOfSmallEnemies>
+    <amountOfBigEnemies>2</amountOfBigEnemies>
+    <pointsForSmall>20</pointsForSmall>
+    <pointsForBig>40</pointsForBig>
+    <life>3</life>
+
+    <defaultShipPosX>300</defaultShipPosX>
+    <defaultShipPosY>240</defaultShipPosY>
+    <shipWidth>50</shipWidth>
+    <shipHeight>46</shipHeight>
+
+    <imageSmallWidth>31</imageSmallWidth>
+    <imageSmallHeight>31</imageSmallHeight>
+
+    <imageBigWidth>81</imageBigWidth>
+    <imageBigHeight>80</imageBigHeight>
+
+    <pathImageSmallObject>src/Images/smallObject.png</pathImageSmallObject>
+    <pathImageBigObject>src/Images/bigObject.png</pathImageBigObject>
+</level1>
+
