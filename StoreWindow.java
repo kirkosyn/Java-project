@@ -3,17 +3,15 @@ package Windows;
 import Constants.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 /**
  * Klasa opisująca okno sklepu
  */
-public class StoreWindow extends Windows
+public class StoreWindow extends JPanel
 {
     /**
      * Przycisk akceptacji
@@ -50,6 +48,14 @@ public class StoreWindow extends Windows
      * Panel, w którym znajdują się komponenty produktów
      */
     private JPanel shopPanel;
+    /**
+     * Komponent do tworzenia dialogów
+     */
+    private JOptionPane optionPane = new JOptionPane();
+    /**
+     * Etykieta informująca o liczbie punktów
+     */
+    private JLabel points;
 
     /**
      * Konstruktor klasy StoreWindow
@@ -58,7 +64,7 @@ public class StoreWindow extends Windows
     {
         createComponents();
         settingComponents();
-        configureWindow(Constants.storeFrameTitle, Parameters.dimStore);
+        //configureWindow(Constants.storeFrameTitle, Parameters.dimStore);
     }
     /**
      * metoda inicjująca komponenty okna
@@ -66,11 +72,29 @@ public class StoreWindow extends Windows
     private void createComponents()
     {
         acceptButton = new JButton(Constants.acceptButtonTitle);
+        acceptButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Object[] options = {Constants.acceptButtonTitle,
+                        Constants.cancelButtonTitle};
+                optionPane.showOptionDialog(
+                        null,
+                        Constants.sureLabelText,
+                        Constants.storeFrameTitle,
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+            }
+        });
         cancelButton = new JButton(Constants.cancelButtonTitle);
 
         text = new JLabel(Constants.storeLabelText);
+        points = new JLabel();
 
-        textPanel = new JPanel();
+        textPanel = new JPanel(new GridLayout(2, 1));
         panel = new JPanel(new GridBagLayout());
         //shopPanel = new JPanel(new GridBagLayout());
         shopPanel = new JPanel(new GridLayout(4,2));
@@ -83,10 +107,14 @@ public class StoreWindow extends Windows
      */
     private void settingComponents()
     {
-        configureFont(text);
-        textPanel.add(text);
-        textPanel.setBackground(Constants.windowBgColor);
+        Windows.configureFont(text);
+        setLayout(new GridBagLayout());
 
+        points.setText("Twoje punkty: " + GameParam.score);
+        points.setHorizontalAlignment(0);
+        textPanel.add(text);
+        textPanel.add(points);
+        textPanel.setBackground(Constants.windowBgColor);
         GridBagConstraints settings = new GridBagConstraints();
         settings.fill = Constants.layoutConstraints;
 
@@ -96,9 +124,19 @@ public class StoreWindow extends Windows
             itemsGraphics.add(new JLabel());
         }
 
-        ImageIcon icon = new ImageIcon("src/Images/ship.png");
-        itemsGraphics.forEach(item -> item.setIcon(icon));
+        ImageIcon icon = new ImageIcon(ShopItems.pathImageShip4);
+        ImageIcon icon2 = new ImageIcon(ShopItems.pathImageShip5);
+        ImageIcon icon3 = new ImageIcon(ShopItems.pathImageHealth);
+
+        itemsGraphics.elementAt(0).setIcon(icon);
+        itemsGraphics.elementAt(1).setIcon(icon2);
+        itemsGraphics.elementAt(2).setIcon(icon3);
+        itemsGraphics.elementAt(3).setIcon(icon3);
         shopItems.forEach(item -> item.setBackground(Constants.windowBgColor));
+        shopItems.elementAt(0).setText("Statek Alpha");
+        shopItems.elementAt(1).setText("Statek Beta");
+        shopItems.elementAt(2).setText("Dodatkowe 1. zycie");
+        shopItems.elementAt(3).setText("Dodatkowe 2. zycie");
 
         shopPanel.add(itemsGraphics.elementAt(0));
         shopPanel.add(itemsGraphics.elementAt(1));
@@ -112,24 +150,24 @@ public class StoreWindow extends Windows
         shopPanel.setBackground(Constants.windowBgColor);
 
         settings.gridwidth = 2;
-        settings.insets = new Insets(10, 0, 0, 0);
-        panel.add(textPanel, settings);
+        settings.insets = new Insets(0, 0, 20, 0);
+        add(textPanel, settings);
 
         settings.gridy = 1;
         settings.insets = new Insets(10, 50, 0, 0);
-        panel.add(shopPanel, settings);
+        add(shopPanel, settings);
 
         settings.gridy = 2;
         settings.gridwidth = 1;
-        panel.add(acceptButton, settings);
+        add(acceptButton, settings);
 
         settings.gridx = 1;
         settings.insets = new Insets(10, 50, 0, 50);
-        panel.add(cancelButton, settings);
+        add(cancelButton, settings);
 
-        panel.setBackground(Constants.windowBgColor);
+        setBackground(Constants.windowBgColor);
 
-        add(panel);
+        //add(panel);
 
     }
 }

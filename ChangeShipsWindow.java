@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 /**
  * Klasa opisująca okno zmieniania statku
  */
-public class ChangeShipsWindow extends Windows
+public class ChangeShipsWindow extends JPanel
 {
     /**
      * Przycisk akceptacji
@@ -58,7 +58,7 @@ public class ChangeShipsWindow extends Windows
     {
         createComponents();
         settingComponents();
-        configureWindow(Constants.shipsFrameTitle,Parameters.dimChange);
+        //configureWindow(Constants.shipsFrameTitle,Parameters.dimChange);
     }
     /**
      * metoda inicjująca komponenty okna
@@ -82,10 +82,11 @@ public class ChangeShipsWindow extends Windows
     {
         lblImage = new JLabel();
         lblImage.setIcon(new ImageIcon("src/Images/ship.png"));
-        configureFont(text);
+        setLayout(new GridBagLayout());
+        Windows.configureFont(text);
         textPanel.add(text);
         textPanel.setBackground(Constants.windowBgColor);
-        panel.setBackground(Constants.windowBgColor);
+        setBackground(Constants.windowBgColor);
 
         GridBagConstraints settings = new GridBagConstraints();
         settings.fill = Constants.layoutConstraints;
@@ -100,25 +101,25 @@ public class ChangeShipsWindow extends Windows
         shipModels.forEach(ship -> shipsSet.addItem(ship));
 
         settings.gridwidth = 2;
-        panel.add(textPanel, settings);
+        add(textPanel, settings);
 
         settings.gridy = 1;
         settings.gridwidth = 1;
-        panel.add(shipsSet, settings);
+        add(shipsSet, settings);
 
         settings.gridx = 1;
         settings.insets = new Insets(0, 60, 0, 0);
-        panel.add(lblImage, settings);
+        add(lblImage, settings);
 
         settings.gridx = 0;
         settings.gridy = 2;
         settings.insets = new Insets(20, 0, 0, 0);
-        panel.add(acceptButton, settings);
+        add(acceptButton, settings);
 
         settings.gridx = 1;
         settings.insets = new Insets(20, 50, 0, 0);
-        panel.add(cancelButton, settings);
+        add(cancelButton, settings);
 
-        add(panel);
+        //add(panel);
     }
 }

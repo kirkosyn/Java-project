@@ -1,10 +1,12 @@
 package Windows;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.Box;
+import javax.swing.*;
+
 import Constants.*;
+
+import javax.swing.JOptionPane;
+import java.awt.*;
+import java.awt.event.*;
 
 /**
  * Klasa opisująca okno główne menu
@@ -47,6 +49,18 @@ public class MenuWindow extends Windows
      * Przycisk menu zakończenia gry
      */
     private JMenuItem endGame;
+    /**
+     * Komponent do tworzenia dialogów
+     */
+    private JOptionPane optionPane;
+    /**
+     * Komponent oddzielający MenuItems w pasku menu
+     */
+    private Component box = Box.createHorizontalGlue();
+    /**
+     * Komponent przechowujący zdjęcie statku
+     */
+    private JLabel shipjpg;
 
     /**
      * Konstruktor klasy MenuWindow
@@ -56,7 +70,10 @@ public class MenuWindow extends Windows
         createComponents();
         launchFrame();
         configureWindow(Constants.frameTitle, Parameters.dimMenu);
+        eventListen();
+        //addKeyListener(this);
     }
+
     /**
      * metoda inicjująca komponenty okna
      */
@@ -76,9 +93,108 @@ public class MenuWindow extends Windows
 
     }
     /**
+     * Metoda nasłuchująca zdarzenia
+     */
+    private void eventListen()
+    {
+        optionPane = new JOptionPane();
+
+        startGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getContentPane().removeAll();
+                revalidate();
+                repaint();
+                try
+                {
+                    String inputValue = optionPane.showInputDialog(null,
+                            Constants.nickLabelText,
+                            Constants.frameTitle,
+                            JOptionPane.PLAIN_MESSAGE);
+                    if(!inputValue.isEmpty()) {
+                        getContentPane().removeAll();
+                        GameWindow game = new GameWindow();
+                        getContentPane().add(game);
+                        game.requestFocus();
+                        revalidate();
+                        repaint();
+                        game.createComponents();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    return;
+                }
+            }
+        });
+
+
+        bestUsers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getContentPane().removeAll();
+                getContentPane().add(new RankingWindow());
+                revalidate();
+                repaint();
+            }
+        });
+
+        levels.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getContentPane().removeAll();
+                getContentPane().add(new LevelsWindow());
+                revalidate();
+                repaint();
+            }
+        });
+
+        shop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getContentPane().removeAll();
+                getContentPane().add(new StoreWindow());
+                revalidate();
+                repaint();
+            }
+        });
+
+        changeShips.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getContentPane().removeAll();
+                getContentPane().add(new ChangeShipsWindow());
+                revalidate();
+                repaint();
+            }
+        });
+
+        JFrame app = this;
+        endGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[] options = {Constants.acceptButtonTitle,
+                        Constants.cancelButtonTitle};
+                int choice = optionPane.showOptionDialog(
+                        null,
+                        Constants.sureLabelText,
+                        Constants.storeFrameTitle,
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+                if (choice == 0)
+                    dispatchEvent(new WindowEvent(app, WindowEvent.WINDOW_CLOSING));
+            }
+        });
+    }
+
+
+    /**
      * metoda ustawiająca parametry i rozłożenie komponentów w oknie
      */
-    public void launchFrame() 
+    public void launchFrame()
     {
         gameMenu.add(startGame);
         gameMenu.add(bestUsers);
@@ -87,9 +203,14 @@ public class MenuWindow extends Windows
         gameMenu.add(changeShips);
         gameMenu.add(endGame);
         menuBar.add(gameMenu);
-        menuBar.add(Box.createHorizontalGlue());
+        menuBar.add(box);
         menuBar.add(helpMenu);
-        
+
+        ImageIcon icon = new ImageIcon(ShopItems.pathImageShip);
+        shipjpg = new JLabel(icon, JLabel.CENTER);
+
         setJMenuBar(menuBar);
+        add(shipjpg);
+
     }
 }

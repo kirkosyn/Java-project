@@ -14,7 +14,7 @@ import javax.swing.ButtonGroup;
 /**
  * Klasa opisująca okno poziomów
  */
-public class LevelsWindow extends Windows
+public class LevelsWindow extends JPanel
 {
     /**
      * Przycisk akceptacji
@@ -69,7 +69,7 @@ public class LevelsWindow extends Windows
     {
         createComponents();
         settingComponents();
-        configureWindow(Constants.levelsFrameTitle, Parameters.dimLevels);
+        //configureWindow(Constants.levelsFrameTitle, Parameters.dimLevels);
     }
     /**
      * metoda inicjująca komponenty okna
@@ -96,8 +96,9 @@ public class LevelsWindow extends Windows
      */
     private void settingComponents()
     {
-        configureFont(text);
-
+        Windows.configureFont(text);
+        setLayout(new GridBagLayout());
+        setBackground(Constants.windowBgColor);
         textPanel.add(text);
         textPanel.setBackground(Constants.windowBgColor);
 
@@ -126,33 +127,30 @@ public class LevelsWindow extends Windows
 
         settings.gridwidth = 2;
         settings.insets = new Insets(0, 0, 30, 0);
-        //settings.anchor = GridBagConstraints.EAST;
-        panel_overall.add(textPanel, settings);
+        add(textPanel, settings);
 
         settings.gridy = 1;
         settings.gridwidth = 1;
         settings.insets = new Insets(0, 0, 0, 0);
-        //settings.anchor = GridBagConstraints.EAST;
-        panel_overall.add(panel, settings);
+        add(panel, settings);
 
         settings.gridx = 1;
-        //settings.anchor = GridBagConstraints.WEST;
         settings.insets = new Insets(0, 50, 0, 0);
-        panel_overall.add(panel2, settings);
+        add(panel2, settings);
 
         settings.gridx = 0;
         settings.gridy = 2;
         settings.insets = new Insets(30, 0, 0, 0);
-        panel_overall.add(acceptButton, settings);
+        add(acceptButton, settings);
 
         settings.gridx = 1;
         settings.insets = new Insets(30, 50, 0, 0);
-        panel_overall.add(cancelButton, settings);
+        add(cancelButton, settings);
 
         panel.setBackground(Constants.windowBgColor);
         panel2.setBackground(Constants.windowBgColor);
-        panel_overall.setBackground(Constants.windowBgColor);
+       // panel_overall.setBackground(Constants.windowBgColor);
 
-        add(panel_overall);
+        //add(panel_overall);
     }
 }

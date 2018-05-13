@@ -3,14 +3,12 @@ package Windows;
 import Constants.*;
 import java.awt.*;
 import java.util.Vector;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  * Klasa opisująca okno rankingu najlepszych 10 graczy
  */
-public class RankingWindow extends Windows
+public class RankingWindow extends JPanel
 {
     /**
      *Przycisk akceptacji
@@ -32,7 +30,7 @@ public class RankingWindow extends Windows
     /**
      * Panel, w którym znajdują się komponenty okna
      */
-    private JPanel panel_overall;
+    //private JPanel panel_overall;
 
     /**
      * Wektor oszarów nazw użytkowników
@@ -42,15 +40,15 @@ public class RankingWindow extends Windows
      * Wektor ilości punktów użytkowników
      */
     private Vector<JTextField> scores;
-
+    private JLabel text;
     /**
      * Konstruktor klasy RankingWindow
      */
-    public RankingWindow() 
+    public RankingWindow()
     {
         createComponents();
         settingComponents();
-        configureWindow(Constants.rankFrameTitle,Parameters.dimRank);
+        //configureWindow(Constants.rankFrameTitle,Parameters.dimMenu);
     }
     /**
      * metoda inicjująca komponenty okna
@@ -62,7 +60,7 @@ public class RankingWindow extends Windows
         buttonsPanel = new JPanel();
         panel = new JPanel(new GridLayout(10, 1));
         panel2 = new JPanel(new GridLayout(10, 1));
-        panel_overall = new JPanel(new GridBagLayout());
+        text = new JLabel();
 
         users = new Vector<JTextField>(10);
         scores = new Vector<JTextField>(10);
@@ -72,11 +70,17 @@ public class RankingWindow extends Windows
     */
     private void settingComponents()
     {
+        setLayout(new GridBagLayout());
         buttonsPanel.add(acceptButton);
         buttonsPanel.setBackground(Constants.windowBgColor);
-
+        text.setText("Najlepsi gracze");
+        Windows.configureFont(text);
         GridBagConstraints settings = new GridBagConstraints();
         settings.fill = Constants.layoutConstraints;
+
+        settings.gridwidth = 2;
+        settings.insets = new Insets(0, 0, 20, 0);
+        add(text,settings);
 
         String name, score;
         name = "brak";
@@ -95,22 +99,27 @@ public class RankingWindow extends Windows
         scores.forEach(var -> var.setPreferredSize(new Dimension(100, 30)));
         scores.forEach(var -> panel2.add(var));
 
-        panel_overall.add(panel, settings);
+        settings.gridwidth = 1;
+        settings.gridy = 1;
+        settings.insets = new Insets(0, 0, 0, 0);
+        add(panel, settings);
 
         settings.gridx = 1;
         settings.insets = new Insets(0, 50, 0, 0);
-        panel_overall.add(panel2, settings);
+        add(panel2, settings);
 
         settings.gridx = 0;
-        settings.gridy = 1;
+        settings.gridy = 2;
         settings.gridwidth = 2;
         settings.insets = new Insets(30, 0, 0, 0);
-        panel_overall.add(buttonsPanel, settings);
+        add(buttonsPanel, settings);
 
         panel.setBackground(Constants.windowBgColor);
         panel2.setBackground(Constants.windowBgColor);
-        panel_overall.setBackground(Constants.windowBgColor);
-
-        add(panel_overall);
+        setBackground(Constants.windowBgColor);
+        setSize(Parameters.dimMenu);
+        //panel_overall.setBackground(Constants.windowBgColor);
+        //panel_overall.setSize(Parameters.dimMenu);
+        //add(panel_overall);
     }
 }
