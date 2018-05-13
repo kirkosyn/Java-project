@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<levels>
+    <lvl1_completed>false</lvl1_completed>
+    <lvl2_completed>false</lvl2_completed>
+    <lvl3_completed>false</lvl3_completed>
+
+    <selected_level>1</selected_level>
+
+    <amountOfSmallEnemies>4</amountOfSmallEnemies>
+    <amountOfBigEnemies>2</amountOfBigEnemies>
+
+    <amountOfSmallEnemies2>6</amountOfSmallEnemies2>
+    <amountOfBigEnemies2>4</amountOfBigEnemies2>
+
+    <amountOfSmallEnemies3>8</amountOfSmallEnemies3>
+    <amountOfBigEnemies3>6</amountOfBigEnemies3>
+
+    <pointsForSmall>20</pointsForSmall>
+    <pointsForBig>40</pointsForBig>
+    <life>3</life>
+
+    <defaultShipPosX>300</defaultShipPosX>
+    <defaultShipPosY>240</defaultShipPosY>
+    <shipWidth>50</shipWidth>
+    <shipHeight>46</shipHeight>
+
+    <imageSmallWidth>31</imageSmallWidth>
+    <imageSmallHeight>31</imageSmallHeight>
+
+    <imageBigWidth>81</imageBigWidth>
+    <imageBigHeight>80</imageBigHeight>
+
+    <score>0</score>
+
+    <pathImageSmallObject>src/Images/smallObject.png</pathImageSmallObject>
+    <pathImageBigObject>src/Images/bigObject.png</pathImageBigObject>
+    <pathImageBullet>src/Images/bullet.png</pathImageBullet>
+</levels>
+

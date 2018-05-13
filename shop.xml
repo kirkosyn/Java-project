@@ -4,4 +4,11 @@
     <priceSecondItem>40</priceSecondItem>
     <priceThirdItem>60</priceThirdItem>
     <priceFourthItem>80</priceFourthItem>
+
+    <pathImageShip>src/Images/ship.png</pathImageShip>
+    <pathImageShip2>src/Images/ship2.png</pathImageShip2>
+    <pathImageShip3>src/Images/ship3.png</pathImageShip3>
+    <pathImageShip4>src/Images/ship4.png</pathImageShip4>
+    <pathImageShip5>src/Images/ship5.png</pathImageShip5>
+    <pathImageHealth>src/Images/health.png</pathImageHealth>
 </shop>
