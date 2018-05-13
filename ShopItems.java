@@ -33,7 +33,12 @@ public final class ShopItems
      *  Zmienna określająca cenę 4. przedmiotu
      */
     public static int priceFourthItem;
-
+    public static String pathImageShip;
+    public static String pathImageShip2;
+    public static String pathImageShip3;
+    public static String pathImageShip4;
+    public static String pathImageShip5;
+    public static String pathImageHealth;
 
     static
     {
@@ -55,6 +60,13 @@ public final class ShopItems
             priceSecondItem = Integer.parseInt(doc.getElementsByTagName("priceSecondItem").item(0).getTextContent());
             priceThirdItem = Integer.parseInt(doc.getElementsByTagName("priceThirdItem").item(0).getTextContent());
             priceFourthItem = Integer.parseInt(doc.getElementsByTagName("priceFourthItem").item(0).getTextContent());
+
+            pathImageShip = doc.getElementsByTagName("pathImageShip").item(0).getTextContent();
+            pathImageShip2 = doc.getElementsByTagName("pathImageShip2").item(0).getTextContent();
+            pathImageShip3 = doc.getElementsByTagName("pathImageShip3").item(0).getTextContent();
+            pathImageShip4 = doc.getElementsByTagName("pathImageShip4").item(0).getTextContent();
+            pathImageShip5 = doc.getElementsByTagName("pathImageShip5").item(0).getTextContent();
+            pathImageHealth = doc.getElementsByTagName("pathImageHealth").item(0).getTextContent();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

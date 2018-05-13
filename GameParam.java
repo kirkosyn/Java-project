@@ -15,15 +15,7 @@ public final class GameParam
     /**
      *  Ścieżka do pliku konfiguracyjnego
      */
-    public static final String xmlConfigFile = "src\\ConfigFiles\\level1.xml";
-    /**
-     *  Ścieżka do pliku konfiguracyjnego
-     */
-    public static final String xmlConfigFileSecondLvl = "src\\ConfigFiles\\level2.xml";
-    /**
-     *  Ścieżka do pliku konfiguracyjnego
-     */
-    public static final String xmlConfigFileThirdLvl = "src\\ConfigFiles\\level3.xml";
+    public static final String xmlConfigFile = "src\\ConfigFiles\\levels.xml";
 
     /**
      *  Zmienna określająca ilość małych komet lvl 1
@@ -113,6 +105,10 @@ public final class GameParam
      */
     public static String pathImageBigObject;
 
+    public static String pathImageBullet;
+
+    public static int selected_level;
+
     static
     {
         configureGameParameters();
@@ -152,25 +148,17 @@ public final class GameParam
 
             pathImageSmallObject = doc.getElementsByTagName("pathImageSmallObject").item(0).getTextContent();
             pathImageBigObject = doc.getElementsByTagName("pathImageBigObject").item(0).getTextContent();
+            pathImageBullet = doc.getElementsByTagName("pathImageBullet").item(0).getTextContent();
 
+            score = Integer.parseInt(doc.getElementsByTagName("score").item(0).getTextContent());
 
-            File xmlInputFileSecondLvl = new File(xmlConfigFileSecondLvl);
-            DocumentBuilderFactory docFactorySecondLvl = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilderSecondLvl = docFactorySecondLvl.newDocumentBuilder();
-            Document docSecondLvl = docBuilderSecondLvl.parse(xmlInputFileSecondLvl);
-            docSecondLvl.getDocumentElement().normalize();
+            amountOfSmallEnemiesSecondLvl = Integer.parseInt(doc.getElementsByTagName("amountOfSmallEnemies2").item(0).getTextContent());
+            amountOfBigEnemiesSecondLvl = Integer.parseInt(doc.getElementsByTagName("amountOfBigEnemies2").item(0).getTextContent());
 
-            amountOfSmallEnemiesSecondLvl = Integer.parseInt(doc.getElementsByTagName("amountOfSmallEnemies").item(0).getTextContent());
-            amountOfBigEnemiesSecondLvl = Integer.parseInt(doc.getElementsByTagName("amountOfBigEnemies").item(0).getTextContent());
+            amountOfSmallEnemiesThirdLvl = Integer.parseInt(doc.getElementsByTagName("amountOfSmallEnemies3").item(0).getTextContent());
+            amountOfBigEnemiesThirdLvl = Integer.parseInt(doc.getElementsByTagName("amountOfBigEnemies3").item(0).getTextContent());
 
-            File xmlInputFileThirdLvl = new File(xmlConfigFileThirdLvl);
-            DocumentBuilderFactory docFactoryThirdLvl = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilderThirdLvl = docFactoryThirdLvl.newDocumentBuilder();
-            Document docThirdLvl = docBuilderThirdLvl.parse(xmlInputFileThirdLvl);
-            docThirdLvl.getDocumentElement().normalize();
-
-            amountOfSmallEnemiesThirdLvl = Integer.parseInt(doc.getElementsByTagName("amountOfSmallEnemies").item(0).getTextContent());
-            amountOfBigEnemiesThirdLvl = Integer.parseInt(doc.getElementsByTagName("amountOfBigEnemies").item(0).getTextContent());
+            selected_level = Integer.parseInt(doc.getElementsByTagName("selected_level").item(0).getTextContent());
         }
         catch (FileNotFoundException e)
         {
