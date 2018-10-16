@@ -1,0 +1,11 @@
+﻿ Gra Asteroids
+Gra polega na niszczeniu asteroid i zdobywaniu za nie punkty. 
+Zasady gry:
+- gracz ma 3 zycia
+- gracz ma mozliwosc zakupu zycia lub statku ze sklepu za pomoca uzbieranych punktow
+- zniszczona duza asteroida da graczowi 40 punktow, a mala 20
+- gracz porusza sie statkiem za pomoca klawiszy - strzalek, strzelanie odbywa sie 
+za pomoca wcisniecia spacji, a pauza - wcisniecie klawisza p, rozpoczecie gry -
+enterem
+- jezeli gracz straci wszystkie swoje zycia, gra sie konczy, jezeli uda mu sie natomiast
+zniszczyc wszystkie asteroidy przechodzi do nastepnego poziomu
